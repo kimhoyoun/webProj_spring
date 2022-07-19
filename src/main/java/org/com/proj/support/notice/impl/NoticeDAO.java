@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import org.com.proj.support.notice.NoticeDTO;
 import org.springframework.stereotype.Repository;
 
-@Repository("NoticeDAO")
+//@Repository("NoticeDAO")
 public class NoticeDAO {
 	Connection con;
 	PreparedStatement ptmt;
