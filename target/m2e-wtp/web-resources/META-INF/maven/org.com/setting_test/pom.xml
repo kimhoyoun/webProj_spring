@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.com</groupId>
-	<artifactId>proj</artifactId>
-	<name>readytopaly_spring</name>
+	<artifactId>setting_test</artifactId>
+	<name>mybatis_setting</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -113,11 +113,9 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>   
-		
-		
+		</dependency>      
 		
 		<dependency>
 		    <groupId>org.mariadb.jdbc</groupId>
@@ -160,22 +158,9 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
-		<dependency>
-		  <groupId>com.github.iamport</groupId>
-		  <artifactId>iamport-rest-client-java</artifactId>
-		  <version>0.2.14</version>
-		</dependency>
-
+		
+		  
 	</dependencies>
-	
-	<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
-	
-	
     <build>
         <plugins>
             <plugin>
