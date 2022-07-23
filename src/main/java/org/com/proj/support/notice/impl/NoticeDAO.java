@@ -19,13 +19,14 @@ import org.springframework.stereotype.Repository;
 @Repository("noticeDAO")
 public class NoticeDAO {
 	
+	// sqlTemplate 객체
 	@Resource(name="sqlSessoinTemplate")
 	private SqlSessionTemplate session;
 	
 	
 	// 여러 개 select
 		public List<NoticeDTO> list() {
-			
+			// noticeDB 연결
 			List<NoticeDTO> noticeList = session.selectList("noticeDB.selectNoticeAll");
 			return noticeList;		
 		}
