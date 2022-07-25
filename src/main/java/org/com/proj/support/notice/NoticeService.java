@@ -6,13 +6,13 @@ import org.com.proj.support.notice.NoticeDTO;
 
 public interface NoticeService {
 	//입력
-	void insertNotice(NoticeDTO dto);
+	void insert(NoticeDTO dto);
 	// 수정
-	void updateNotice(NoticeDTO dto);
+	void update(NoticeDTO dto);
 	// 삭제
-	void deleteNotice(NoticeDTO dto);
+	void delete(NoticeDTO dto);
 	// 조회
-	NoticeDTO detailNotice(String id);
+	NoticeDTO selectOne(String id);
 	// 조회 all
 	List<NoticeDTO> NoticeList(int start, int limit);
 }

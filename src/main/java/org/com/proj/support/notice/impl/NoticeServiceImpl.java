@@ -14,30 +14,30 @@ public class NoticeServiceImpl implements NoticeService {
 	private NoticeDAO noticeDAO;
 	
 	@Override
-	public void insertNotice(NoticeDTO dto) {
+	public void insert(NoticeDTO dto) {
 //		noticeDAO.insert(dto);
 	}
 
 	@Override
-	public void updateNotice(NoticeDTO dto) {
+	public void update(NoticeDTO dto) {
 //		noticeDAO.modify(dto);
 	}
 
 	@Override
-	public void deleteNotice(NoticeDTO dto) {
+	public void delete(NoticeDTO dto) {
 //		noticeDAO.delete(dto);
 	}
 
 	@Override
-	public NoticeDTO detailNotice(String id) {
-//		return noticeDAO.detail(id);
-		return null;
+	public NoticeDTO selectOne(String id) {
+		return noticeDAO.selectOne(id);
 	}
 
 	@Override
 	public List<NoticeDTO> NoticeList(int start, int limit) {
 //		return noticeDAO.list(start, limit);
-		return noticeDAO.list();
+//		return noticeDAO.list();
+		return null;
 	}
 
 }

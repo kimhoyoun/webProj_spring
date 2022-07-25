@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="noticeDB">
 
-<!-- select 쿼리 (1개) -->
-	<select id="selectNoticeAll" resultType="NoticeDTO">
-		select * from notice;
+<mapper namespace="org.com.proj.support.notice.NoticeInfoMapper">
+
+	<select id="selectBoardCount" resultType="Long">
+		select count(*) from notice
 	</select>
+<!-- select 쿼리 (1개) -->
+	<select id="selectOne" parameterType = "String" resultType="NoticeDTO">
+		select * from notice where id = #{value}
+	</select>
+	
+	<select id="selectAll" parameterType="HashMap" resultType="NoticeDTO">
+		select * from notice order by no desc limit ${start}, ${limit}
+	</select>
+	
+	<insert id="insert" parameterType="NoticeDTO">
+	insert into notice(id, title, content, filter, reg_date) values 
+		(#{id} , #{title} , #{content} , #{filter} ,sysdate())
+	</insert>
 </mapper>

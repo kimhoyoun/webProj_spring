@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -13,8 +14,10 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import org.com.proj.support.notice.NoticeDTO;
+import org.com.proj.support.notice.NoticeInfoMapper;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
 
 @Repository("noticeDAO")
 public class NoticeDAO {
@@ -25,10 +28,55 @@ public class NoticeDAO {
 	
 	
 	// 여러 개 select
-		public List<NoticeDTO> list() {
+//		public List<NoticeDTO> list() {
+//			// noticeDB 연결
+//			List<NoticeDTO> noticeList = session.selectList("noticeDB.selectNoticeAll");
+//			return noticeList;		
+//		}
+		
+	
+		public List<NoticeDTO> list(int page) {
 			// noticeDB 연결
-			List<NoticeDTO> noticeList = session.selectList("noticeDB.selectNoticeAll");
+			
+			NoticeInfoMapper mapper = session.getMapper(NoticeInfoMapper.class);
+			
+			int limit = 5; // 한 페이지당 게시글 수
+			int pageLimit = 4; // 페이지 번호 갯수
+			
+			int total = mapper.selectBoardCount().intValue();
+			
+			int pageTotal = total/limit;
+			
+			if(total%limit > 0) {
+				pageTotal++;
+			}
+			
+			int start = (page-1)*limit;
+			
+			int pageStart = (page-1)/pageLimit*pageLimit+1;
+			
+			int pageEnd = pageStart+pageLimit-1;
+			if(pageEnd>pageTotal) {
+				pageEnd = pageTotal;
+			}
+			
+			HashMap<String, Object> boardListSelectInfo = new HashMap<String, Object>();
+			
+			boardListSelectInfo.put("start", start);
+			boardListSelectInfo.put("limit", limit);
+			
+			
+			List<NoticeDTO> noticeList = mapper.selectAll(boardListSelectInfo);
 			return noticeList;		
+		}
+		
+		public NoticeDTO selectOne(String id) {
+			
+			NoticeInfoMapper mapper = session.getMapper(NoticeInfoMapper.class);
+			
+			NoticeDTO dto = mapper.selectOne(id);
+			
+			return dto; 
 		}
 		
 		
